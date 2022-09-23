@@ -4,6 +4,7 @@ import Login from "./pages/Login";
 import Register from "./pages/Register";
 import { AuthContext } from './context/AuthContext';
 import { useContext } from 'react';
+import Nav from "./pages/Nav";
 
 function App() {
   const {currentUser} = useContext(AuthContext)
@@ -20,6 +21,7 @@ function App() {
       <Route path="/login" element={<Login/>} />
         <Route path="/" index element={
           <RequireAuth>
+            <Nav />
             <DashBoard/>
           </RequireAuth>
         }/>
