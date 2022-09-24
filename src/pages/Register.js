@@ -1,5 +1,5 @@
 import { AccountCircle, Badge, Key } from '@mui/icons-material'
-import { Button, InputAdornment, Link, Paper, TextField, Typography } from '@mui/material'
+import { Button, InputAdornment, Link, Paper, TextField, Typography, createTheme, ThemeProvider } from '@mui/material'
 import { Box } from '@mui/system'
 import React, { useState } from 'react'
 import Mainlogo from "../components/Component40.png"
@@ -21,6 +21,16 @@ const Register = () => {
 
     const navigate = useNavigate();
 
+    const theme = createTheme({
+        palette: {
+        primary: {
+            main: '#E63058',
+        },
+        secondary: {
+            main: '#f44336',
+        },
+        },
+    });
 
     function SignUp (){
         createUserWithEmailAndPassword(auth, email, password)
@@ -51,6 +61,7 @@ const Register = () => {
 
   return (
     <div>
+    <ThemeProvider theme={theme}>
     <Box display={'flex'} justifyContent={'center'} alignItems={'center'} height={'100vh'} flexWrap={'wrap'} bgcolor='#E63058'>
         <Paper sx={{minWidth: 400, display:'flex', justifyContent:'center', alignItems:'center', flexDirection:'column'}}>
                 <Typography sx={{ marginTop:3}} variant='h4' fontWeight={'bold'}>Register</Typography>
@@ -86,6 +97,7 @@ const Register = () => {
                 <Link href="/login" sx={{ marginTop:3, marginBottom:3}}>Already have an account?</Link>
         </Paper>
     </Box>
+    </ThemeProvider>
     </div>
   )
 }

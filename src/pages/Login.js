@@ -1,5 +1,5 @@
 import { AccountCircle, Key } from '@mui/icons-material'
-import { Button, InputAdornment, Link, Paper, TextField, Typography } from '@mui/material'
+import { Button, InputAdornment, Link, Paper, TextField, Typography, createTheme, ThemeProvider } from '@mui/material'
 import { Box } from '@mui/system'
 import React, { useContext, useState } from 'react'
 import { useNavigate } from 'react-router-dom';
@@ -19,6 +19,17 @@ const Login = () => {
     const [error, setError] = useState(false)
     
     const navigate = useNavigate();
+  
+    const theme = createTheme({
+        palette: {
+        primary: {
+            main: '#E63058',
+        },
+        secondary: {
+            main: '#f44336',
+        },
+        },
+    });
 
 
     const handleLogin = () => {
@@ -40,6 +51,7 @@ const Login = () => {
     
   return (
     <div>
+    <ThemeProvider theme={theme}>
     <Box display={'flex'} justifyContent={'center'} alignItems={'center'} height={'100vh'} flexWrap={'wrap'} bgcolor='#E63058'>
         <Paper sx={{minWidth: 400, display:'flex', justifyContent:'center', alignItems:'center', flexDirection:'column'}}>
                 <Typography sx={{ marginTop:3}} variant='h4' fontWeight={'bold'}>Log In</Typography>
@@ -62,6 +74,7 @@ const Login = () => {
                 <Link href="/register" sx={{ marginTop:3, marginBottom:3}}>Don't have an account?</Link>
         </Paper>
     </Box>
+    </ThemeProvider>
     </div>
   )
 }

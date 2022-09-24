@@ -1,10 +1,11 @@
-import { BrowserRouter as Router, Route, Routes, Navigate } from "react-router-dom";
+import { BrowserRouter as Router, Route, Routes, Navigate, Outlet } from "react-router-dom";
 import DashBoard from "./pages/DashBoard";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
 import { AuthContext } from './context/AuthContext';
 import { useContext } from 'react';
 import Nav from "./pages/Nav";
+
 
 function App() {
   const {currentUser} = useContext(AuthContext)
@@ -13,19 +14,25 @@ function App() {
     return currentUser ? (children) : <Navigate to="/login" />
   }
 
+
   console.log(currentUser)
+
 
   return (
     <Router>
       <Routes>
-      <Route path="/login" element={<Login/>} />
-        <Route path="/" index element={
-          <RequireAuth>
-            <Nav />
-            <DashBoard/>
-          </RequireAuth>
-        }/>
-       
+      <Route path="/Login" element={<Login/>} />
+        <Route element={ <div><Nav/><Outlet/></div>}>
+          <Route path="/" element={
+            <RequireAuth>
+              <DashBoard/>
+            </RequireAuth>
+          }/>
+          <Route path="/settings" element={
+            <RequireAuth>
+            </RequireAuth>
+          }/>
+        </Route>
         <Route path="/Register" element={<Register/>} />
       </Routes>
     </Router>
