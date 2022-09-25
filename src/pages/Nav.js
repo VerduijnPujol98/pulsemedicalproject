@@ -12,7 +12,11 @@ import { doc, getDoc, onSnapshot } from "firebase/firestore";
 import { db } from '../firebasecomfig';
 import Testest from '../components/Testest';
 
-const Nav = () => {
+
+import { Realtime } from 'ably';
+
+
+
 
   const {dispatch} = useContext(AuthContext)
 
@@ -109,7 +113,7 @@ async function getData (){
             <ListItemIcon>
               <AccountCircle fontSize='large' sx={{}} />
             </ListItemIcon>
-            <Typography sx={{}}>Se Profile / Ret Profil</Typography>
+            <Typography sx={{}}>Se Profil / Ret Profil</Typography>
           </ListItemButton>
         </ListItem>
         <ListItem>
