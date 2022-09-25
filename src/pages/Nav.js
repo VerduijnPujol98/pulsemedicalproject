@@ -10,10 +10,13 @@ import { auth } from '../firebasecomfig'
 import { signOut } from "firebase/auth";
 import { doc, getDoc, onSnapshot } from "firebase/firestore";
 import { db } from '../firebasecomfig';
+import Ably from "ably/promises"
 import Testest from '../components/Testest';
 
 
-import { Realtime } from 'ably';
+const Nav = () => {
+
+ 
 
 
 
