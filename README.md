@@ -11,4 +11,4 @@ Josuka123!
 
 But you can also create an account if you'd like to.
 
-This app was made just for fun as a portfolio project. It is an CRUD based APP with an Auth feature using Firebase and ApLy for realtime notifications and mainly Firebase a backend plus realtime DB.
+This app was made just for fun as a portfolio project. It is an CRUD based APP with an Auth feature using Firebase and ApLy for realtime notifications and mainly Firebase as a backend plus realtime DB.
