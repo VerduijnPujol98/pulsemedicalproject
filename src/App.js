@@ -5,6 +5,7 @@ import Register from "./pages/Register";
 import { AuthContext } from './context/AuthContext';
 import { useContext } from 'react';
 import Nav from "./pages/Nav";
+import Profil from "./components/Profil";
 
 
 function App() {
@@ -30,6 +31,10 @@ function App() {
             </RequireAuth>
           }/>
           <Route path="/settings" element={
+            <RequireAuth>
+            </RequireAuth>
+          }/>
+          <Route path="/profil" element={
             <RequireAuth>
             </RequireAuth>
           }/>

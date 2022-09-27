@@ -1,21 +1,18 @@
 import React, { useEffect, useState } from 'react'
 import { auth, db } from '../firebasecomfig'
 import { collection, getDoc, doc, onSnapshot, getDocs, setDoc, query } from "firebase/firestore";
-import { Avatar, Box, Button, Card, CardActions, CardContent, Divider, Grid, IconButton, Paper, Typography } from '@mui/material';
+import { Avatar, Box, Button, Card, CardActions, CardContent, Divider, Drawer, Grid, IconButton, Paper, Typography } from '@mui/material';
 import { AccessTime, BookmarkAdd, CallReceived, Gite, LocationOn } from '@mui/icons-material';
 import Grid2 from '@mui/material/Unstable_Grid2';
 import Ably from "ably/promises"
 import { configureAbly, useChannel } from "@ably-labs/react-hooks";
-import { Stack } from '@mui/system';
+import { Stack, width } from '@mui/system';
 
 
 
 
 
 const Testest = () => {
-
-
-
 
 
   /////////////////////////////////////////REAL TIME NOTIFICATION AND SETTING DATA IN FIREBASE//////////////////////////////////////////
@@ -86,7 +83,7 @@ const Testest = () => {
   return (
 <Grid2 container spacing={5} sx={{paddingTop:3, paddingLeft: 1}} >
                 <Grid2 xs="auto">
-                    <Card sx={{minWidth: 280}}>
+                    <Card sx={{minWidth: 370}}>
                         <CardContent sx={{borderBottom: 1, borderBottomColor: '#E63058', borderBottomWidth:4, display: 'flex', flexDirection:'row'}}>
                           <Box>
                             <Typography variant="h3" color="#E63058">
@@ -105,7 +102,7 @@ const Testest = () => {
                     </Card>
                 </Grid2>
                 <Grid2 xs="auto">
-                    <Card sx={{minWidth: 280}}>
+                    <Card sx={{minWidth: 370}}>
                     <CardContent sx={{borderBottom: 1, borderBottomColor: '#E63058', borderBottomWidth:4, display: 'flex', flexDirection:'row'}}>
                           <Box>
                             <Typography variant="h3" color="#E63058">
@@ -124,7 +121,7 @@ const Testest = () => {
                     </Card>
                 </Grid2>
                 <Grid2 xs="auto">
-                    <Card sx={{minWidth: 280}}>
+                    <Card sx={{minWidth: 370}}>
                     <CardContent sx={{borderBottom: 1, borderBottomColor: '#E63058', borderBottomWidth:4, display: 'flex', flexDirection:'row'}}>
                           <Box>
                             <Typography variant="h3" color="#E63058">
@@ -142,59 +139,54 @@ const Testest = () => {
                         </CardContent>
                     </Card>
                 </Grid2>
-                <Grid2 xs="auto">
-                    <Card sx={{minWidth: 310, minHeight: 700}}>
-                        <CardContent sx={{display:'flex', justifyContent:'center', flexDirection:'column'}}>
-                            <Button onClick={sendMessage} variant="outlined">Notification</Button>
+                <Drawer
+                sx={{
+                  width: 300,
+                  flexShrink: 0,
+                  '& .MuiDrawer-paper': {
+                    width: 300,
+                    boxSizing: 'border-box',
+                  },
+                }}
+                variant="permanent"
+                anchor="right"       
+                >
+                <Box sx={{marginTop:10, width:300}}>
 
 
 
 
 
+                  {Object.values(userdata).map((data, i) => (
+                    <Box key = {data.id}>
+                      <Box sx={{ p: 2, display: 'flex'}}>
+                      <Avatar variant="rounded" />
+                      <Stack spacing={0.5} marginLeft={2}>
+                        <Typography fontWeight={600}>{data.hospital}</Typography>
+                        <Typography variant="body2" color="text.secondary">
+                        {data.country}
+                        </Typography>
+                      </Stack>
+                      </Box>
+                      <Stack 
+                      direction="row"
+                      alignItems="center"
+                      justifyContent="space-between"
+                      sx={{ px: 2, py: 1, bgcolor: 'background.default' }}
+                      >
+                        <Typography>
+                        {data.text}
+                        </Typography>
+                      </Stack>
+                    <Divider/>                                
+                    </Box> 
+                    ))}
 
 
 
-
-
-                              {Object.values(userdata).map((data, i) => (
-                              <Box>
-                                <Box sx={{ p: 2, display: 'flex'}}>
-                                <Avatar variant="rounded" />
-                                <Stack spacing={0.5} marginLeft={2}>
-                                  <Typography fontWeight={600}>{data.hospital}</Typography>
-                                  <Typography variant="body2" color="text.secondary">
-                                   {data.country}
-                                  </Typography>
-                                </Stack>
-                                </Box>
-                                <Stack 
-                                direction="row"
-                                alignItems="center"
-                                justifyContent="space-between"
-                                sx={{ px: 2, py: 1, bgcolor: 'background.default' }}
-                                >
-                                  <Typography>
-                                  {data.text}
-                                  </Typography>
-                                </Stack>
-                              <Divider/>                                
-                              </Box> 
-                              ))}
-
-
-
-
-
-
-
-
-
-
-
-
-                        </CardContent>
-                    </Card>
-                </Grid2>
+                  </Box>
+                  <Button onClick={sendMessage} variant="outlined">Notification</Button>
+                </Drawer>
             </Grid2>
   )
 }

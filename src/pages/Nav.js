@@ -3,7 +3,7 @@ import { AccountCircle, Dashboard, EventAvailable, Gite, Mail, Settings } from '
 import { AppBar, Avatar, Button, Chip, createTheme, Drawer, List, ListItem, ListItemButton, ListItemIcon, Toolbar, Typography } from '@mui/material';
 import { Box, ThemeProvider } from '@mui/system';
 import React, { useEffect, useState } from 'react'
-import { useLocation, useNavigate } from 'react-router-dom';
+import { Route, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../context/AuthContext';
 import { useContext } from 'react';
 import { auth } from '../firebasecomfig'
@@ -11,7 +11,7 @@ import { signOut } from "firebase/auth";
 import { doc, getDoc, onSnapshot } from "firebase/firestore";
 import { db } from '../firebasecomfig';
 import Ably from "ably/promises"
-import Testest from '../components/Testest';
+import Profil from '../components/Profil';
 
 
 const Nav = () => {
@@ -77,7 +77,7 @@ async function getData (){
       <ThemeProvider theme={theme}>
         <AppBar
           position="fixed"
-          sx={{ width: `calc(100% - ${drawerWidth}px)`, ml: `${drawerWidth}px` }}
+          sx={{ width: `calc(100% - ${drawerWidth}px)`, ml: `${drawerWidth}px`, zIndex: (themes) => themes.zIndex.drawer + 1 }}
         >
           <Toolbar sx={{bgcolor:"white", display:'flex', justifyContent:'flex-end', alignContent:'center'}}>
             <Typography sx={{marginRight:2}} color="black">{userdata.firstname} {userdata.lastname}</Typography>
@@ -104,7 +104,7 @@ async function getData (){
               <Typography sx={{color:"#E63058"}}>Main</Typography>
           </ListItem>  
           <ListItem>
-            <ListItemButton>
+            <ListItemButton onClick={() => {navigate('/')}}>
               <ListItemIcon>
                 <Dashboard fontSize='large' sx={{color:homecolor}}/>
               </ListItemIcon>
@@ -112,7 +112,7 @@ async function getData (){
             </ListItemButton>
           </ListItem>
           <ListItem>
-          <ListItemButton>
+          <ListItemButton onClick={() => {navigate('/profil')}}>
             <ListItemIcon>
               <AccountCircle fontSize='large' sx={{}} />
             </ListItemIcon>
@@ -159,8 +159,6 @@ async function getData (){
           <Box component="main"
           sx={{marginLeft:40 ,flexGrow: 1, bgcolor: 'background.default', p: 3 }}>
           <Toolbar />
-            <Testest></Testest>
-
           </Box>
       </ThemeProvider>
     </div>
