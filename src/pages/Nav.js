@@ -11,7 +11,7 @@ import { signOut } from "firebase/auth";
 import { doc, getDoc, onSnapshot } from "firebase/firestore";
 import { db } from '../firebasecomfig';
 import Ably from "ably/promises"
-import Profil from '../components/Profil';
+import Profil from './Profil';
 
 
 const Nav = () => {
@@ -69,6 +69,10 @@ async function getData (){
 
   const homecolor = location.pathname === "/" ? "#E63058"  : ""
   const homefont = location.pathname === "/" ? "bold": ""
+  const profilcolor = location.pathname === "/profil" ? "#E63058"  : ""
+  const profilfont = location.pathname === "/profil" ? "bold": ""
+  const hospitalcolor = location.pathname === "/hospitalkal" ? "#E63058"  : ""
+  const hospitalfont = location.pathname === "/hospitalkal" ? "bold": ""
 
 
 
@@ -114,9 +118,9 @@ async function getData (){
           <ListItem>
           <ListItemButton onClick={() => {navigate('/profil')}}>
             <ListItemIcon>
-              <AccountCircle fontSize='large' sx={{}} />
+              <AccountCircle fontSize='large' sx={{color:profilcolor}} />
             </ListItemIcon>
-            <Typography sx={{}}>Se Profil / Ret Profil</Typography>
+            <Typography sx={{fontWeight:profilfont, color:profilcolor}}>Se Profil / Ret Profil</Typography>
           </ListItemButton>
         </ListItem>
         <ListItem>
@@ -128,11 +132,11 @@ async function getData (){
         </ListItemButton>
       </ListItem>
       <ListItem>
-      <ListItemButton>
+      <ListItemButton onClick={() => {navigate('/hospitalkal')}}>
         <ListItemIcon>
-          <Gite fontSize='large' sx={{}}/>
+          <Gite fontSize='large' sx={{color:hospitalcolor}}/>
         </ListItemIcon>
-        <Typography sx={{}}>Hospitaler</Typography>
+        <Typography sx={{fontWeight:hospitalfont, color:hospitalcolor}}>Hospitaler</Typography>
       </ListItemButton>
     </ListItem>
     <ListItem>
